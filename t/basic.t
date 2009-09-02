@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-use warnings;
+#use warnings;
 
 use Test::More tests => 15;
 
@@ -39,10 +39,6 @@ sub throws_ok (&$$) {
 }
 
 
-sub Evil::DESTROY {
-	eval { "oh noes" };
-}
-
 lives_ok {
 	try {
 		die "foo";
@@ -74,17 +70,23 @@ throws_ok {
 	is( $@, "magic", '$@ untouched' );
 }
 
-is( scalar(try { qw(foo bar gorch) }), "gorch", "scalar context" ); 
+is( scalar(try { "foo", "bar", "gorch" }), "gorch", "scalar context" );
 is_deeply( [ try {qw(foo bar gorch)} ], [qw(foo bar gorch)], "list context" );
 
 
+
+sub Evil::DESTROY {
+	eval { "oh noes" };
+}
+
+sub Evil::new { bless { }, $_[0] }
 
 {
 	local $@ = "magic";
 	local $_ = "other magic";
 
 	try {
-		my $object = bless { }, "Evil";
+		my $object = Evil->new;
 		die "foo";
 	} catch {
 		pass("catch invoked");

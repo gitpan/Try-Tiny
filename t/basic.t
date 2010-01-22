@@ -3,7 +3,7 @@
 use strict;
 #use warnings;
 
-use Test::More tests => 15;
+use Test::More tests => 24;
 
 BEGIN { use_ok 'Try::Tiny' };
 
@@ -39,6 +39,8 @@ sub throws_ok (&$$) {
 }
 
 
+my $prev;
+
 lives_ok {
 	try {
 		die "foo";
@@ -73,6 +75,40 @@ throws_ok {
 is( scalar(try { "foo", "bar", "gorch" }), "gorch", "scalar context" );
 is_deeply( [ try {qw(foo bar gorch)} ], [qw(foo bar gorch)], "list context" );
 
+{
+	my ($sub) = catch { my $a = $_; };
+	is(ref($sub), 'Try::Tiny::Catch', 'Checking catch subroutine scalar reference is correctly blessed');
+	my ($sub) = finally { my $a = $_; };
+	is(ref($sub), 'Try::Tiny::Finally', 'Checking finally subroutine scalar reference is correctly blessed');
+}
+
+lives_ok {
+	try {
+		die "foo";
+	} catch {
+		my $err = shift;
+
+		try {
+			like $err, qr/foo/;
+		} catch {
+			fail("shouldn't happen");
+		};
+
+		pass "got here";
+	}
+} "try in try catch block";
+
+throws_ok {
+	try {
+		die "foo";
+	} catch {
+		my $err = shift;
+
+		try { } catch { };
+
+		die "rethrowing $err";
+	}
+} qr/rethrowing foo/, "rethrow with try in catch block";
 
 
 sub Evil::DESTROY {
@@ -96,4 +132,28 @@ sub Evil::new { bless { }, $_[0] }
 
 	is( $@, "magic", '$@ untouched' );
 	is( $_, "other magic", '$_ untouched' );
+}
+
+{
+	my ( $caught, $prev );
+
+	{
+		local $@;
+
+		eval { die "bar\n" };
+
+		is( $@, "bar\n", 'previous value of $@' );
+
+		try {
+			die {
+				prev => $@,
+			}
+		} catch {
+			$caught = $_;
+			$prev = $@;
+		}
+	}
+
+	is_deeply( $caught, { prev => "bar\n" }, 'previous value of $@ available for capture' );
+	is( $prev, "bar\n", 'previous value of $@ also available in catch block' );
 }

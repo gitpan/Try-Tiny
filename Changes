@@ -1,3 +1,9 @@
+0.03
+	- Support for 'finally' blocks (Andy Yates)
+	- More documentation and tests (many people)
+	- Sets $@ to the previous value at the beginning of the eval, to allow
+	  the capture of an error stack when calling die.
+
 0.02
 	- Doc fixes from chromatic
 	- Various minor fixes from Adam Kennedy

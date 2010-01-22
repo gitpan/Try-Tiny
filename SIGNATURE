@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.55.
+signed via the Module::Signature module, version 0.61.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,18 +14,19 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 d150077b59fe9b327023d1b32e746c8fff661983 Changes
-SHA1 0f7f01d0d9d133529eccfe396cf4c71a37a197ad MANIFEST
+SHA1 4f5dcc16f8ef8f78227cc329878a98eba520cddd Changes
+SHA1 ddef902deeadd5075a417ba50041f8ffc9ca8a5b MANIFEST
 SHA1 606bd6424682249397d63caf905f651178a4d6cc MANIFEST.SKIP
-SHA1 85e16f502eb5ec72cccd91a8e25fdaf4fe88a3e1 META.yml
+SHA1 35eba179aa34c25095292c7ea12ef1a6cf45c4ac META.yml
 SHA1 6adc37b24473f070c318abfe77a8531fbf1eefca Makefile.PL
-SHA1 10edc1903fdbc5a81a28b05a5a33ce3da9bc11bb lib/Try/Tiny.pm
-SHA1 85cdb50e91e46c74bdff5a3c147655e060190c76 t/basic.t
+SHA1 68f1690c5d49873dded5eccb88fe0f9e09ecb9e1 lib/Try/Tiny.pm
+SHA1 9b9eb08500f664009e8a6848d26ce9e625dafd3b t/basic.t
+SHA1 3f35b080f40f42a1c2058142d28ff86122f83af6 t/finally.t
 SHA1 c75ffed79f4936105b81aa82443b0a0a87c78873 t/when.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.7 (Darwin)
+Version: GnuPG/MacGPG2 v2.0.12 (Darwin)
 
-iD8DBQFKnq77VCwRwOvSdBgRAnU4AJ9TFIkNbNVAWKADeeH2E5Ug4lyC7gCfeoZu
-Bh881ePwvmPrrFSNPhgVlhM=
-=vbpJ
+iEYEARECAAYFAktZ6YUACgkQVCwRwOvSdBiX9wCfc6IIWgCGZXWIMJcKc/oDx+sF
+NrEAoJu+UXxEh1skJjDAyFTIrOkRv6Ob
+=7k4T
 -----END PGP SIGNATURE-----

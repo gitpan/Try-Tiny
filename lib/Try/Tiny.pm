@@ -10,7 +10,7 @@ BEGIN {
 	@ISA = qw(Exporter);
 }
 
-$VERSION = "0.04";
+$VERSION = "0.05";
 
 $VERSION = eval $VERSION;
 
@@ -148,7 +148,7 @@ Try::Tiny - minimal try/catch with proper localization of $@
 	try {
 		die "foo";
 	} catch {
-		warn "caught error: $_";
+		warn "caught error: $_"; # not $@
 	};
 
 	# just silence errors
@@ -217,6 +217,9 @@ If there was an error and the second subroutine was given it will be invoked
 with the error in C<$_> (localized) and as that block's first and only
 argument.
 
+C<$@> does B<not> contain the error. Inside the C<catch> block it has the same
+value it had before the C<try> block was executed.
+
 Note that the error may be false, but if that happens the C<catch> block will
 still be invoked.
 
@@ -232,9 +235,15 @@ with this code reference.
 
 	catch { ... }
 
-Inside the catch block the previous value of C<$@> is still available for use.
-This value may or may not be meaningful depending on what happened before the
-C<try>, but it might be a good idea to preserve it in an error stack.
+Inside the catch block the caught error is stored in C<$_>, while previous
+value of C<$@> is still available for use.  This value may or may not be
+meaningful depending on what happened before the C<try>, but it might be a good
+idea to preserve it in an error stack.
+
+For code that captures C<$@> when throwing new errors (i.e.
+L<Class::Throwable>), you'll need to do:
+
+	local $@ = $_;
 
 =item finally (&;$)
 
@@ -282,7 +291,7 @@ not yet handled.
 C<$@> must be properly localized before invoking C<eval> in order to avoid this
 issue.
 
-More specifically, C<$@> is clobbered at the begining of the C<eval>, which
+More specifically, C<$@> is clobbered at the beginning of the C<eval>, which
 also makes it impossible to capture the previous error before you die (for
 instance when making exception objects with error stacks).
 
@@ -407,8 +416,8 @@ this is also how C<eval> works, but not how L<TryCatch> works):
 =item *
 
 C<try> introduces another caller stack frame. L<Sub::Uplevel> is not used. L<Carp>
-will report this when using full stack traces. This lack of magic is considered
-a feature.
+will not report this when using full stack traces, though, because
+C<%Carp::Internal> is used. This lack of magic is considered a feature.
 
 =item *
 
@@ -432,6 +441,33 @@ the C<catch> block:
 	};
 
 	return unless $obj;
+
+=item *
+
+C<$SIG{__DIE__}> is still in effect.
+
+Though it can be argued that C<$SIG{__DIE__}> should be disabled inside of
+C<eval> blocks, since it isn't people have grown to rely on it. Therefore in
+the interests of compatibility, C<try> does not disable C<$SIG{__DIE__}> for
+the scope of the error throwing code.
+
+=item *
+
+Lexical C<$_> may override the one set by C<catch>.
+
+For example Perl 5.10's C<given> form uses a lexical C<$_>, creating some
+confusing behavior:
+
+	given ($foo) {
+		when (...) {
+			try {
+				...
+			} catch {
+				warn $_; # will print $foo, not the error
+				warn $_[0]; # instead, get the error like this
+			}
+		}
+	}
 
 =back
 
@@ -473,7 +509,7 @@ issues with C<$@>, but you still need to localize to prevent clobbering.
 I gave a lightning talk about this module, you can see the slides (Firefox
 only):
 
-L<http://nothingmuch.woobling.org/talks/takahashi.xul?data=try_tiny.txt>
+L<http://nothingmuch.woobling.org/talks/takahashi.xul?data=yapc_asia_2009/try_tiny.txt>
 
 Or read the source:
 

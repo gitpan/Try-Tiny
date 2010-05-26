@@ -5,6 +5,7 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 t/basic.t
 t/finally.t
+t/given_when.t
 t/when.t
 META.yml                                 Module meta-data (added by MakeMaker)
 SIGNATURE                                Public-key signature (added by MakeMaker)

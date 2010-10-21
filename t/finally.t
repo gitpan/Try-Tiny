@@ -3,7 +3,7 @@
 use strict;
 #use warnings;
 
-use Test::More tests => 8;
+use Test::More tests => 12;
 
 BEGIN { use_ok 'Try::Tiny' };
 
@@ -38,5 +38,28 @@ try {
 	pass('Moved into finally block when try throws an exception and we have no catch block');
 };
 
+try {
+  die('Die');
+} finally {
+  pass('First finally clause run');
+} finally {
+  pass('Second finally clause run');
+};
+
+try {
+  # do not die
+} finally {
+  if (@_) {
+    fail("errors reported: @_");
+  } else {
+    pass("no error reported") ;
+  }
+};
+
+try {
+  die("Die\n");
+} finally {
+  is_deeply(\@_, [ "Die\n" ], "finally got passed the exception");
+};
 
 1;

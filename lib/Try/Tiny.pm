@@ -10,7 +10,7 @@ BEGIN {
 	@ISA = qw(Exporter);
 }
 
-$VERSION = "0.08";
+$VERSION = "0.09";
 
 $VERSION = eval $VERSION;
 
@@ -130,7 +130,8 @@ sub finally (&;@) {
 }
 
 {
-  package Try::Tiny::ScopeGuard;
+  package # hide from PAUSE
+    Try::Tiny::ScopeGuard;
 
   sub _new {
     shift;

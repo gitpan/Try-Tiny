@@ -29,7 +29,7 @@ resources:
   bugtracker: https://github.com/doy/try-tiny/issues
   homepage: http://metacpan.org/release/Try-Tiny
   repository: git://github.com/doy/try-tiny.git
-version: 0.13
+version: 0.14
 x_Dist_Zilla:
   perl:
     version: 5.018000

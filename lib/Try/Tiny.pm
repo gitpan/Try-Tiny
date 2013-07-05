@@ -3,7 +3,7 @@ BEGIN {
   $Try::Tiny::AUTHORITY = 'cpan:NUFFIN';
 }
 {
-  $Try::Tiny::VERSION = '0.13';
+  $Try::Tiny::VERSION = '0.14';
 }
 use 5.006;
 # ABSTRACT: minimal try/catch with proper preservation of $@
@@ -110,7 +110,7 @@ sub try (&;@) {
 sub catch (&;@) {
   my ( $block, @rest ) = @_;
 
-  croak 'Useless bare catch()' unless defined wantarray;
+  croak 'Useless bare catch()' unless wantarray;
 
   return (
     bless(\$block, 'Try::Tiny::Catch'),
@@ -121,7 +121,7 @@ sub catch (&;@) {
 sub finally (&;@) {
   my ( $block, @rest ) = @_;
 
-  croak 'Useless bare finally()' unless defined wantarray;
+  croak 'Useless bare finally()' unless wantarray;
 
   return (
     bless(\$block, 'Try::Tiny::Finally'),
@@ -172,7 +172,7 @@ Try::Tiny - minimal try/catch with proper preservation of $@
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

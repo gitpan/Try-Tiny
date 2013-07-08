@@ -42,6 +42,7 @@
          "requires" : {
             "File::Find" : "0",
             "File::Temp" : "0",
+            "Sub::Name" : "0",
             "Test::More" : "0",
             "if" : "0"
          }
@@ -59,7 +60,7 @@
          "web" : "https://github.com/doy/try-tiny"
       }
    },
-   "version" : "0.14",
+   "version" : "0.15",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018000"
@@ -294,6 +295,7 @@
       "Jonathan Yu <JAWNSY@cpan.org>",
       "Karen Etheridge <ether@cpan.org>",
       "Marc Mims <marc@questright.com>",
+      "Mark Fowler <mark@twoshortplanks.com>",
       "Peter Rabbitson <ribasushi@cpan.org>",
       "Ricardo Signes <rjbs@cpan.org>",
       "chromatic <chromatic@wgz.org>"

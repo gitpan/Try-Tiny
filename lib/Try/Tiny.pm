@@ -3,7 +3,7 @@ BEGIN {
   $Try::Tiny::AUTHORITY = 'cpan:NUFFIN';
 }
 {
-  $Try::Tiny::VERSION = '0.14';
+  $Try::Tiny::VERSION = '0.15';
 }
 use 5.006;
 # ABSTRACT: minimal try/catch with proper preservation of $@
@@ -16,6 +16,8 @@ our @EXPORT = our @EXPORT_OK = qw(try catch finally);
 
 use Carp;
 $Carp::Internal{+__PACKAGE__}++;
+
+BEGIN { eval "use Sub::Name; 1" or *{subname} = sub {1} }
 
 # Need to prototype as @ not $$ because of the way Perl evaluates the prototype.
 # Keeping it at $$ means you only ever get 1 sub because we need to eval in a list
@@ -52,6 +54,12 @@ sub try (&;@) {
   # FIXME consider using local $SIG{__DIE__} to accumulate all errors. It's
   # not perfect, but we could provide a list of additional errors for
   # $catch->();
+
+  # name the blocks if we have Sub::Name installed
+  my $caller = caller;
+  subname("${caller}::try {...} " => $try);
+  subname("${caller}::catch {...} " => $catch) if $catch;
+  subname("${caller}::finally {...} " => $_) foreach @finally;
 
   # save the value of $@ so we can set $@ back to it in the beginning of the eval
   # and restore $@ after the eval finishes
@@ -172,7 +180,7 @@ Try::Tiny - minimal try/catch with proper preservation of $@
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

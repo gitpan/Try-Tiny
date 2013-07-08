@@ -6,6 +6,7 @@ author:
 build_requires:
   File::Find: 0
   File::Temp: 0
+  Sub::Name: 0
   Test::More: 0
   if: 0
 configure_requires:
@@ -29,7 +30,7 @@ resources:
   bugtracker: https://github.com/doy/try-tiny/issues
   homepage: http://metacpan.org/release/Try-Tiny
   repository: git://github.com/doy/try-tiny.git
-version: 0.14
+version: 0.15
 x_Dist_Zilla:
   perl:
     version: 5.018000
@@ -216,6 +217,7 @@ x_contributors:
   - 'Jonathan Yu <JAWNSY@cpan.org>'
   - 'Karen Etheridge <ether@cpan.org>'
   - 'Marc Mims <marc@questright.com>'
+  - 'Mark Fowler <mark@twoshortplanks.com>'
   - 'Peter Rabbitson <ribasushi@cpan.org>'
   - 'Ricardo Signes <rjbs@cpan.org>'
   - 'chromatic <chromatic@wgz.org>'

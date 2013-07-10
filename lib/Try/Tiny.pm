@@ -3,7 +3,7 @@ BEGIN {
   $Try::Tiny::AUTHORITY = 'cpan:NUFFIN';
 }
 {
-  $Try::Tiny::VERSION = '0.15';
+  $Try::Tiny::VERSION = '0.16';
 }
 use 5.006;
 # ABSTRACT: minimal try/catch with proper preservation of $@
@@ -180,7 +180,7 @@ Try::Tiny - minimal try/catch with proper preservation of $@
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 
@@ -507,7 +507,7 @@ Instead, you should capture the return value:
     my $success = try {
       die;
       1;
-    }
+    };
     return unless $success;
 
     say "This text WILL NEVER appear!";

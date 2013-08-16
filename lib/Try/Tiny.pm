@@ -3,7 +3,7 @@ BEGIN {
   $Try::Tiny::AUTHORITY = 'cpan:NUFFIN';
 }
 {
-  $Try::Tiny::VERSION = '0.16';
+  $Try::Tiny::VERSION = '0.17';
 }
 use 5.006;
 # ABSTRACT: minimal try/catch with proper preservation of $@
@@ -30,7 +30,9 @@ sub try (&;@) {
   # to $failed
   my $wantarray = wantarray;
 
-  my ( $catch, @finally );
+  # work around perl bug by explicitly initializing these, due to the likelyhood
+  # this will be used in global destruction (perl rt#119311)
+  my ( $catch, @finally ) = ();
 
   # find labeled blocks in the argument list.
   # catch and finally tag the blocks by blessing a scalar reference to them.
@@ -180,7 +182,7 @@ Try::Tiny - minimal try/catch with proper preservation of $@
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 SYNOPSIS
 

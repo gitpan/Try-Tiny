@@ -59,10 +59,10 @@
          "web" : "https://github.com/doy/try-tiny"
       }
    },
-   "version" : "0.16",
+   "version" : "0.17",
    "x_Dist_Zilla" : {
       "perl" : {
-         "version" : "5.018000"
+         "version" : "5.018001"
       },
       "plugins" : [
          {
@@ -290,6 +290,7 @@
       "Alex <alex@koban.(none)>",
       "Andrew Yates <ayates@haddock.local>",
       "Glenn Fowler <cebjyre@cpan.org>",
+      "Graham Knop <haarg@haarg.org>",
       "Hans Dieter Pearcey <hdp@weftsoar.net>",
       "Jonathan Yu <JAWNSY@cpan.org>",
       "Karen Etheridge <ether@cpan.org>",

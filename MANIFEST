@@ -14,6 +14,7 @@ t/context.t
 t/erroneous_usage.t
 t/finally.t
 t/given_when.t
+t/global_destruction_forked.t
 t/named.t
 t/when.t
 xt/release/eol.t

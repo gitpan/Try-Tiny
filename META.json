@@ -59,7 +59,7 @@
          "web" : "https://github.com/doy/try-tiny"
       }
    },
-   "version" : "0.17",
+   "version" : "0.18",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018001"
@@ -297,6 +297,7 @@
       "Marc Mims <marc@questright.com>",
       "Mark Fowler <mark@twoshortplanks.com>",
       "Mark Stosberg <mark@stosberg.com>",
+      "Paul Howarth <paul@city-fan.org>",
       "Peter Rabbitson <ribasushi@cpan.org>",
       "Ricardo Signes <rjbs@cpan.org>",
       "chromatic <chromatic@wgz.org>"

@@ -2,16 +2,14 @@ package Try::Tiny;
 BEGIN {
   $Try::Tiny::AUTHORITY = 'cpan:NUFFIN';
 }
-{
-  $Try::Tiny::VERSION = '0.18';
-}
+$Try::Tiny::VERSION = '0.19';
 use 5.006;
 # ABSTRACT: minimal try/catch with proper preservation of $@
 
 use strict;
 use warnings;
 
-use base 'Exporter';
+use Exporter 5.57 'import';
 our @EXPORT = our @EXPORT_OK = qw(try catch finally);
 
 use Carp;
@@ -182,7 +180,7 @@ Try::Tiny - minimal try/catch with proper preservation of $@
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 SYNOPSIS
 
@@ -514,6 +512,20 @@ Instead, you should capture the return value:
 
     say "This text WILL NEVER appear!";
   }
+  # OR
+  sub parent_sub_with_catch {
+    my $success = try {
+      die;
+      1;
+    }
+    catch {
+      # do something with $_
+      return undef; #see note
+    };
+    return unless $success;
+
+    say "This text WILL NEVER appear!";
+  }
 
 Note that if you have a C<catch> block, it must return C<undef> for this to work,
 since if a C<catch> block exists, its return value is returned in place of C<undef>
@@ -647,7 +659,7 @@ Jesse Luehrs <doy@tozt.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by Yuval Kogman.
+This software is Copyright (c) 2014 by Yuval Kogman.
 
 This is free software, licensed under:
 

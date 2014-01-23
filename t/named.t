@@ -8,10 +8,10 @@ use Test::More;
 BEGIN {
 	plan skip_all => "Sub::Name required"
 		unless eval { require Sub::Name; 1 };
-	plan tests => 4;
+	plan tests => 3;
 }
 
-BEGIN { use_ok 'Try::Tiny' }
+use Try::Tiny;
 
 my $name;
 try {

@@ -5,7 +5,7 @@
       "Jesse Luehrs <doy@tozt.net>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "mit"
    ],
@@ -30,8 +30,7 @@
       "runtime" : {
          "requires" : {
             "Carp" : "0",
-            "Exporter" : "0",
-            "base" : "0",
+            "Exporter" : "5.57",
             "constant" : "0",
             "perl" : "5.006",
             "strict" : "0",
@@ -39,12 +38,22 @@
          }
       },
       "test" : {
+         "recommends" : {
+            "Capture::Tiny" : "0.12"
+         },
          "requires" : {
-            "File::Find" : "0",
-            "File::Temp" : "0",
-            "Test::More" : "0",
+            "File::Spec" : "0",
+            "IO::Handle" : "0",
+            "IPC::Open3" : "0",
+            "Test::More" : "0.88",
             "if" : "0"
          }
+      }
+   },
+   "provides" : {
+      "Try::Tiny" : {
+         "file" : "lib/Try/Tiny.pm",
+         "version" : "0.19"
       }
    },
    "release_status" : "stable",
@@ -59,7 +68,7 @@
          "web" : "https://github.com/doy/try-tiny"
       }
    },
-   "version" : "0.18",
+   "version" : "0.19",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018001"
@@ -68,32 +77,32 @@
          {
             "class" : "Dist::Zilla::Plugin::GatherDir",
             "name" : "@DOY/GatherDir",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::PruneCruft",
             "name" : "@DOY/PruneCruft",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::ManifestSkip",
             "name" : "@DOY/ManifestSkip",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaYAML",
             "name" : "@DOY/MetaYAML",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::License",
             "name" : "@DOY/License",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::Readme",
             "name" : "@DOY/Readme",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::RunExtraTests",
@@ -103,47 +112,47 @@
          {
             "class" : "Dist::Zilla::Plugin::ExecDir",
             "name" : "@DOY/ExecDir",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::ShareDir",
             "name" : "@DOY/ShareDir",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::MakeMaker",
             "name" : "@DOY/MakeMaker",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::Manifest",
             "name" : "@DOY/Manifest",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::TestRelease",
             "name" : "@DOY/TestRelease",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::ConfirmRelease",
             "name" : "@DOY/ConfirmRelease",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaConfig",
             "name" : "@DOY/MetaConfig",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaJSON",
             "name" : "@DOY/MetaJSON",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::NextRelease",
             "name" : "@DOY/NextRelease",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::CheckChangesHasContent",
@@ -153,7 +162,7 @@
          {
             "class" : "Dist::Zilla::Plugin::PkgVersion",
             "name" : "@DOY/PkgVersion",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::Authority",
@@ -163,12 +172,12 @@
          {
             "class" : "Dist::Zilla::Plugin::PodCoverageTests",
             "name" : "@DOY/PodCoverageTests",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodSyntaxTests",
             "name" : "@DOY/PodSyntaxTests",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::NoTabsTests",
@@ -182,8 +191,18 @@
          },
          {
             "class" : "Dist::Zilla::Plugin::Test::Compile",
+            "config" : {
+               "Dist::Zilla::Plugin::Test::Compile" : {
+                  "module_finder" : [
+                     ":InstallModules"
+                  ],
+                  "script_finder" : [
+                     ":ExecFiles"
+                  ]
+               }
+            },
             "name" : "@DOY/Test::Compile",
-            "version" : "2.002"
+            "version" : "2.021"
          },
          {
             "class" : "Dist::Zilla::Plugin::Metadata",
@@ -193,37 +212,47 @@
          {
             "class" : "Dist::Zilla::Plugin::MetaResources",
             "name" : "@DOY/MetaResources",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Check",
             "name" : "@DOY/Git::Check",
-            "version" : "2.013"
+            "version" : "2.014"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Commit",
             "name" : "@DOY/Git::Commit",
-            "version" : "2.013"
+            "version" : "2.014"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Tag",
             "name" : "@DOY/Git::Tag",
-            "version" : "2.013"
+            "version" : "2.014"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::NextVersion",
             "name" : "@DOY/Git::NextVersion",
-            "version" : "2.013"
+            "version" : "2.014"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::ContributorsFromGit",
+            "name" : "@DOY/ContributorsFromGit",
+            "version" : "0.006"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
+            "name" : "@DOY/MetaProvides::Package",
+            "version" : "1.14000003"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodWeaver",
             "name" : "@DOY/PodWeaver",
-            "version" : "3.101641"
+            "version" : "3.101642"
          },
          {
             "class" : "Dist::Zilla::Plugin::UploadToCPAN",
             "name" : "@DOY/UploadToCPAN",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::ContributorsFromGit",
@@ -233,7 +262,7 @@
          {
             "class" : "Dist::Zilla::Plugin::AutoPrereqs",
             "name" : "AutoPrereqs",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",
@@ -244,37 +273,58 @@
                }
             },
             "name" : "Prereqs",
-            "version" : "4.300034"
+            "version" : "5.012"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "recommends"
+               }
+            },
+            "name" : "TestRecommends",
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":InstallModules",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":IncModules",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":TestFiles",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":ExecFiles",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":ShareFiles",
-            "version" : "4.300034"
+            "version" : "5.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":MainModule",
-            "version" : "4.300034"
+            "version" : "5.012"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":AllFiles",
+            "version" : "5.012"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":NoFiles",
+            "version" : "5.012"
          }
       ],
       "zilla" : {
@@ -282,13 +332,14 @@
          "config" : {
             "is_trial" : "0"
          },
-         "version" : "4.300034"
+         "version" : "5.012"
       }
    },
    "x_authority" : "cpan:NUFFIN",
    "x_contributors" : [
       "Alex <alex@koban.(none)>",
       "Andrew Yates <ayates@haddock.local>",
+      "Dagfinn Ilmari Manns\u00e5ker <ilmari@ilmari.org>",
       "Glenn Fowler <cebjyre@cpan.org>",
       "Graham Knop <haarg@haarg.org>",
       "Hans Dieter Pearcey <hdp@weftsoar.net>",
@@ -300,6 +351,8 @@
       "Paul Howarth <paul@city-fan.org>",
       "Peter Rabbitson <ribasushi@cpan.org>",
       "Ricardo Signes <rjbs@cpan.org>",
+      "anaxagoras <walkeraj@gmail.com>",
+      "awalker <awalker@sourcefire.com>",
       "chromatic <chromatic@wgz.org>"
    ]
 }

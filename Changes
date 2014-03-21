@@ -1,5 +1,8 @@
 Revision history for Try-Tiny
 
+0.20  2014-03-21
+  - documentation updates (Flimm, #15)
+
 0.19  2014-01-22
   - fix an obscure issue with loading modules during global destruction
     (ilmari, #11)

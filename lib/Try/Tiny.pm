@@ -2,7 +2,7 @@ package Try::Tiny;
 BEGIN {
   $Try::Tiny::AUTHORITY = 'cpan:NUFFIN';
 }
-$Try::Tiny::VERSION = '0.19';
+$Try::Tiny::VERSION = '0.20';
 use 5.006;
 # ABSTRACT: minimal try/catch with proper preservation of $@
 
@@ -174,13 +174,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Try::Tiny - minimal try/catch with proper preservation of $@
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 SYNOPSIS
 
@@ -243,6 +245,13 @@ You can add C<finally> blocks, yielding the following:
 C<finally> blocks are always executed making them suitable for cleanup code
 which cannot be handled using local.  You can add as many C<finally> blocks to a
 given C<try> block as you like.
+
+Note that adding a C<finally> block without a preceding C<catch> block
+suppresses any errors. This behaviour is consistent with using a standalone
+C<eval>, but it is not consistent with C<try>/C<finally> patterns found in
+other programming languages, such as Java, Python, Javascript or C#. If you
+learnt the C<try>/C<finally> pattern from one of these languages, watch out for
+this.
 
 =head1 EXPORTS
 

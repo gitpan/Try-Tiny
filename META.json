@@ -55,7 +55,7 @@
    "provides" : {
       "Try::Tiny" : {
          "file" : "lib/Try/Tiny.pm",
-         "version" : "0.20"
+         "version" : "0.21"
       }
    },
    "release_status" : "stable",
@@ -70,7 +70,7 @@
          "web" : "https://github.com/doy/try-tiny"
       }
    },
-   "version" : "0.20",
+   "version" : "0.21",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"
@@ -382,11 +382,6 @@
             "class" : "Dist::Zilla::Plugin::UploadToCPAN",
             "name" : "@DOY/UploadToCPAN",
             "version" : "5.014"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::ContributorsFromGit",
-            "name" : "ContributorsFromGit",
-            "version" : "0.006"
          },
          {
             "class" : "Dist::Zilla::Plugin::AutoPrereqs",

@@ -2,7 +2,7 @@ package Try::Tiny;
 BEGIN {
   $Try::Tiny::AUTHORITY = 'cpan:NUFFIN';
 }
-$Try::Tiny::VERSION = '0.20';
+$Try::Tiny::VERSION = '0.21';
 use 5.006;
 # ABSTRACT: minimal try/catch with proper preservation of $@
 
@@ -182,7 +182,7 @@ Try::Tiny - minimal try/catch with proper preservation of $@
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 SYNOPSIS
 

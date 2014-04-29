@@ -21,7 +21,7 @@ name: Try-Tiny
 provides:
   Try::Tiny:
     file: lib/Try/Tiny.pm
-    version: '0.21'
+    version: '0.22'
 requires:
   Carp: '0'
   Exporter: '5.57'
@@ -33,7 +33,7 @@ resources:
   bugtracker: https://github.com/doy/try-tiny/issues
   homepage: http://metacpan.org/release/Try-Tiny
   repository: git://github.com/doy/try-tiny.git
-version: '0.21'
+version: '0.22'
 x_Dist_Zilla:
   perl:
     version: '5.018002'
@@ -136,8 +136,9 @@ x_Dist_Zilla:
             - ':InstallModules'
           script_finder:
             - ':ExecFiles'
+            - ':TestFiles'
       name: '@DOY/NoTabsTests'
-      version: '0.06'
+      version: '0.07'
     -
       class: Dist::Zilla::Plugin::EOLTests
       name: '@DOY/EOLTests'
